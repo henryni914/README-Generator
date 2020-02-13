@@ -49,10 +49,18 @@ inquirer
         const usage = "## Usage" + '\n' + response.usage;
         const license = "## License" + '\n' + response.license;
         const contributor = "## Contributors" + '\n' + response.contributor;
-        fs.writeFile("README.md", title + '\n' + description + '\n' + table + '\n' + installation + '\n' + usage + '\n' + license + '\n' + contributor, function (err) {
-            if (err) {
-                throw err;
-            }
-        })
+        const queryUrl = `https://api.github.com/users/${response.username}/repos?per_page=100`;
+        axios
+            .get(queryUrl)
+            .then(function (res) {
+                // console.log(response);
+                const badge = `<a href="https://github.com/${response.username}"> <img width="75px" height="75px" alt=avatar src="${res.data[0].owner.avatar_url}"> </a>`;
+                fs.writeFile("README.md", title + '\n' + description + '\n' + table + '\n' + installation + '\n' + usage + '\n' + license + '\n' + contributor + '\n' + badge, function (err) {
+                    if (err) {
+                        throw err;
+                    }
+                })
+            });
+
     });
-  
+
