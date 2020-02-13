@@ -28,12 +28,28 @@ inquirer
             type: "input",
             name: "usage",
             message: "Enter any usage instructions here:"
-        }
+        },
+        {
+            type: "list",
+            name: "license",
+            message: "Which license?",
+            choices: ["MIT", "None"]
+        },
+        {
+            type: "input",
+            name: "contributor",
+            message: "Enter any contributors here:"
+        },
     ]).then(function (response) {
         console.log(response.title);
-        const title = response.title;
-        const description = response.description;
-        fs.writeFile("README.md", "#Project Name: " + title + '\n' + "##Description <hr>" + description + '\n', function (err) {
+        const title = "# " + response.title;
+        const description = "## Description <hr>" + '\n' + response.description;
+        const table = "## Table <hr>" + '\n';
+        const installation = "## Installation <hr>" + '\n' + response.installation;
+        const usage = "## Usage <hr>" + '\n' + response.usage;
+        const license = "## License <hr>" + '\n' + response.license;
+        const contributor = "## Contributors <hr>" + '\n' + response.contributor;
+        fs.writeFile("README.md", title + '\n' + description + '\n' + table + '\n' + installation + '\n' + usage + '\n' + license + '\n' + contributor, function (err) {
             if (err) {
                 throw err;
             }
