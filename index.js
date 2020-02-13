@@ -43,12 +43,12 @@ inquirer
     ]).then(function (response) {
         console.log(response.title);
         const title = "# " + response.title;
-        const description = "## Description <hr>" + '\n' + response.description;
-        const table = "## Table <hr>" + '\n';
-        const installation = "## Installation <hr>" + '\n' + response.installation;
-        const usage = "## Usage <hr>" + '\n' + response.usage;
-        const license = "## License <hr>" + '\n' + response.license;
-        const contributor = "## Contributors <hr>" + '\n' + response.contributor;
+        const description = "## Description" + '\n' + response.description;
+        const table = "## Table" + '\n';
+        const installation = "## Installation" + '\n' + response.installation;
+        const usage = "## Usage" + '\n' + response.usage;
+        const license = "## License" + '\n' + response.license;
+        const contributor = "## Contributors" + '\n' + response.contributor;
         fs.writeFile("README.md", title + '\n' + description + '\n' + table + '\n' + installation + '\n' + usage + '\n' + license + '\n' + contributor, function (err) {
             if (err) {
                 throw err;
