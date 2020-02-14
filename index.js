@@ -44,7 +44,7 @@ inquirer
         console.log(response.title);
         const title = "# " + response.title;
         const description = "## Description" + '\n' + response.description;
-        const table = "## Table" + '\n';
+        // const table = "## Table" + '\n'; //removed table of contents
         const installation = "## Installation" + '\n' + response.installation;
         const usage = "## Usage" + '\n' + response.usage;
         const license = "## License" + '\n' + response.license;
@@ -55,7 +55,7 @@ inquirer
             .then(function (res) {
                 // console.log(response);
                 const badge = `<a href="https://github.com/${response.username}"> <img width="75px" height="75px" alt=avatar src="${res.data[0].owner.avatar_url}"> </a>`;
-                fs.writeFile("README.md", title + '\n' + description + '\n' + table + '\n' + installation + '\n' + usage + '\n' + license + '\n' + contributor + '\n' + badge, function (err) {
+                fs.writeFile("README.md", title + '\n' + description + '\n' + installation + '\n' + usage + '\n' + license + '\n' + contributor + '\n' + badge, function (err) {
                     if (err) {
                         throw err;
                     }
